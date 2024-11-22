@@ -2,8 +2,8 @@
 Guide for using QuPath, FIJI and Warpy to work with CODEX and H&E data of whole slide images.
 
 ## Data preparation
-1. Crop relevant ROI in the H&E and convert to bioformats compatible 24-bit RGB (ome.tif) with LZW compression using [script 1](https://github.com/Zainab-am/test_repo/blob/main/scripts/export_HE.groovy), this is necessary for the Warpy image registration.
-2. Extract DAPI channel from qptiff CODEX to 8-bit ome.tif, using [script 2](https://github.com/Zainab-am/test_repo/blob/main/scripts/extract_8bit_DAPI.groovy).
+1. Crop relevant ROI in the H&E and convert to bioformats compatible 24-bit RGB (ome.tif) with LZW compression using [script 1](scripts/export_HE.groovy), this is necessary for the Warpy image registration.
+2. Extract DAPI channel from qptiff CODEX to 8-bit ome.tif, using [script 2](scripts/extract_8bit_DAPI.groovy).
 
 ## Transformation
 We use the [QuPath extension Warpy](https://github.com/BIOP/qupath-extension-warpy) and follow the steps in [the guide](https://imagej.net/plugins/bdv/warpy/warpy-extension). The registration results in a transform.json file.
@@ -16,4 +16,4 @@ Extra settings:
 This is done in QuPath using Cellpose or Instanseg and results in classified detections. [See the guide online](https://qupath.readthedocs.io/en/stable/docs/tutorials/cell_classification.html).
 
 ## Transformation of objects
-The segmented and classified objects can be transfered from CODEX to H&E using the transform.json file in QuPath. Using [script 3](https://github.com/Zainab-am/test_repo/blob/main/scripts/set_parent.groovy), the detection objects are added as children to the parent object (the annotation). [Script 4](https://github.com/Zainab-am/test_repo/blob/main/scripts/tps_transform.groovy) performs the inverse transformation (CODEX -> H&E) on the selected objects. The hierarchical structure of the parent and children objects is preserved and after the transformation the objects maintain their original UUIDs. This is important when you want to refer back to objects in the CODEX image.
+The segmented and classified objects can be transfered from CODEX to H&E using the transform.json file in QuPath. Using [script 3](scripts/set_parent.groovy), the detection objects are added as children to the parent object (the annotation). [Script 4](scripts/tps_transform.groovy) performs the inverse transformation (CODEX -> H&E) on the selected objects. The hierarchical structure of the parent and children objects is preserved and after the transformation the objects maintain their original UUIDs. This is important when you want to refer back to objects in the CODEX image.
